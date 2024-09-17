@@ -1,0 +1,18 @@
+{
+  "name": "tiquete",
+  "version": "1.0.0",
+  "description": "microservicios para la gestion",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SantiagoyJulian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "tiquete": "file:"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

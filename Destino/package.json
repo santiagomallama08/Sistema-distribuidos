@@ -1,0 +1,18 @@
+{
+  "name": "destino",
+  "version": "1.0.0",
+  "description": "microservicios para la gestion",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SantiagoyJulian",
+  "license": "ISC",
+  "dependencies": {
+    "destino": "file:",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemodule": "^0.3.0"
+  }
+}
