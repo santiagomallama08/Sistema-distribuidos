@@ -9,6 +9,7 @@
   "author": "SantiagoyJulian",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.19.1",
     "express": "^4.21.0",
     "tiquete": "file:"
   },
