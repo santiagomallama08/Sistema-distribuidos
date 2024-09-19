@@ -8,10 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Destino {
+model Cliente {
   id Int @id @default(autoincrement())
-  Nombre String @unique 
-  Coordenadas String
-  fecha DateTime
-  hora DateTime 
 }

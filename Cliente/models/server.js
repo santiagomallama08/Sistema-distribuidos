@@ -20,7 +20,7 @@ class Server{
     }
 
     routes(){
-        this.app.use('/destino', require('../routes/destino.routes'));
+        this.app.use('/destino', require('../routes/cliente.route'));
     }
 
    

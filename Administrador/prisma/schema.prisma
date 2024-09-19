@@ -10,8 +10,5 @@ datasource db {
 
 model Destino {
   id Int @id @default(autoincrement())
-  Nombre String @unique 
-  Coordenadas String
-  fecha DateTime
-  hora DateTime 
+
 }
