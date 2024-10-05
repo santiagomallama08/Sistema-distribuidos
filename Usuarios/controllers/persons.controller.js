@@ -19,12 +19,15 @@ const ShowPersons = async(req=request, res=response)=>{
 
 const AddPersons = async(req=request, res=response)=>{
 
-    const { email, password } = req.body;
+    const { name, lastName, number, published, userID  } = req.body;
 
     const result = await prisma.persons.create({
         data: {
-            email,
-            password
+            name,
+            lastName,
+            number,
+            published,
+            userID
         }
     }).catch(err=>{
         return err.message;
@@ -46,15 +49,18 @@ const ShowPerson = async(req=request, res=response)=>{
 const EditPersons = async(req=request, res=response)=>{
     const { id } = req.params;
 
-    const { email, password } = req.body;
+    const { name, lastName, number, published, userID  } = req.body;
 
     const result = await prisma.persons.update({
         where:{
             id: Number(id)
         },
         data: {
-            email,
-            password
+            name,
+            lastName,
+            number,
+            published,
+            userID
         }
     }).catch(err=>{
         return err.message;

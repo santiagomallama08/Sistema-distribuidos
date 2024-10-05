@@ -23,6 +23,7 @@ class Server{
 
     routes(){
         this.app.use('/users', require('../routes/user.routes'));
+        this.app.use('/persons', require('../routes/persons.routes'));
     }
 
    
