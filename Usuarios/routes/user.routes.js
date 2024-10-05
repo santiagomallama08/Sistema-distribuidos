@@ -13,7 +13,7 @@ const {AddUsers, ShowUsers, DeleteUsers, EditUsers, ShowUser} = require('../cont
  */
 router.get('/', ShowUsers);
 router.post('/', AddUsers);
-router.delete('/', DeleteUsers);
+router.delete('/:id', DeleteUsers);
 router.put('/:id', EditUsers);
 router.get('/:id', ShowUser);
 
