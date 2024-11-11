@@ -1,5 +1,6 @@
 # Dependencias de Node.js
 node_modules/
+users_data_dev/
 
 # Archivos de configuración de npm
 npm-debug.log
