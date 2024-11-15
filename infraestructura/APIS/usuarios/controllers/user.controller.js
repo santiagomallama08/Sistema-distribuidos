@@ -41,10 +41,32 @@ const AddUsers = async(req=request, res=response)=>{
     });
 };
 
-const ShowUser = async(req=request, res=response)=>{
-    res.json({
-        "saludo":"soy la respuesta de mostrar usuarios"
-    });
+const ShowUser = async(req = request, res = response) => {
+    const { id } = req.params;
+
+    try {
+        const user = await prisma.users.findUnique({
+            where: {
+                id: Number(id)
+            }
+        });
+
+        if (!user) {
+            return res.status(404).json({
+                message: "Usuario no encontrado"
+            });
+        }
+
+        res.json({
+            user
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        });
+    } finally {
+        await prisma.$disconnect();
+    }
 };
 
 const EditUsers = async(req=request, res=response)=>{
