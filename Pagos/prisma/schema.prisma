@@ -8,9 +8,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Pagos {
+model Pago {
   id Int @id @default(autoincrement())
-  Metodo  String @unique 
+  Metodo  String 
   monto String
-  fecha DateTime
+  fecha String
 }

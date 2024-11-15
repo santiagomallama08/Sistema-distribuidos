@@ -13,7 +13,7 @@ const { ShowTiquete, AddTiquete, DeleteTiquet, EditTiquet, ShowTiquet} = require
  */
 router.get('/', ShowTiquete);
 router.post('/', AddTiquete);
-router.delete('/', DeleteTiquet);
+router.delete('/:id', DeleteTiquet);
 router.put('/:id', EditTiquet);
 router.get('/:id', ShowTiquet);
 

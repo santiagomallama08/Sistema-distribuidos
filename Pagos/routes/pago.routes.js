@@ -13,7 +13,7 @@ const { ShowPagos, AddPagos, DeletePago, EditPago, ShowPago} = require('../contr
  */
 router.get('/', ShowPagos);
 router.post('/', AddPagos);
-router.delete('/', DeletePago);
+router.delete('/:id', DeletePago);
 router.put('/:id', EditPago);
 router.get('/:id', ShowPago);
 

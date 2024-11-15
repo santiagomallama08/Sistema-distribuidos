@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 const ShowDestinos = async(req=request, res=response)=>{
 
-    const destino = await prisma.users.findMany()
+    const destino = await prisma.destino.findMany()
     .catch(err=>{
         return err.message;
     }).finally((async ()=>{
@@ -13,23 +13,20 @@ const ShowDestinos = async(req=request, res=response)=>{
     }));
 
     res.json({
-        tiquete
+        destino
     });
 };
 
 const AddDestino = async(req=request, res=response)=>{
 
-    const { Nombre,Coordenadas,fecha,hora,idbus } = req.body;
+    const { Nombre,Coordenadas,fecha,hora } = req.body;
 
-    const result = await prisma.users.create({
+    const result = await prisma.destino.create({
         data: {
             Nombre,
             Coordenadas,
             fecha,
-            hora,
-            idbus
-          
-
+            hora
         }
     }).catch(err=>{
         return err.message;
@@ -41,19 +38,40 @@ const AddDestino = async(req=request, res=response)=>{
         result
     });
 };
+const ShowDestino = async(req = request, res = response) => {
+    const { id } = req.params;
 
-const ShowDestino = async(req=request, res=response)=>{
-    res.json({
-        "saludo":"soy la respuesta de mostrar usuarios"
-    });
+    try {
+        const destino = await prisma.destino.findUnique({
+            where: {
+                id: Number(id)
+            }
+        });
+
+        if (!destino) {
+            return res.status(404).json({
+                message: "Destino no encontrado"
+            });
+        }
+
+        res.json({
+            destino
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        });
+    } finally {
+        await prisma.$disconnect();
+    }
 };
 
 const EditDestino = async(req=request, res=response)=>{
     const { id } = req.params;
 
-    const { Nombre,Coordenadas,fecha,hora,idbus} = req.body;
+    const { Nombre,Coordenadas,fecha,hora} = req.body;
 
-    const result = await prisma.users.update({
+    const result = await prisma.destino.update({
         where:{
             id: Number(id)
         },
@@ -61,8 +79,7 @@ const EditDestino = async(req=request, res=response)=>{
             Nombre,
             Coordenadas,
             fecha,
-            hora,
-            idbus
+            hora
         }
     }).catch(err=>{
         return err.message;
@@ -79,7 +96,7 @@ const EditDestino = async(req=request, res=response)=>{
 const DeleteDestino = async(req=request, res=response)=>{
     const { id } = req.params;
 
-    const result = await prisma.users.delete({
+    const result = await prisma.destino.delete({
         where:{
             id: Number(id)
         }

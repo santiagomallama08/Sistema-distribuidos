@@ -13,7 +13,7 @@ const { ShowDestinos, ShowDestino, AddDestino, DeleteDestino, EditDestino} = req
  */
 router.get('/', ShowDestinos);
 router.post('/', AddDestino);
-router.delete('/', DeleteDestino);
+router.delete('/:id', DeleteDestino);
 router.put('/:id', EditDestino);
 router.get('/:id', ShowDestino);
 

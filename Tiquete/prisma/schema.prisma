@@ -10,8 +10,8 @@ datasource db {
 
 model Tiquete {
   id Int @id @default(autoincrement())
-  Hora DateTime   // Hora, Fecha, Origen, LLegada
-  Fecha DateTime
+  Hora String   // Hora, Fecha, Origen, LLegada
+  Fecha String
   Origen String
   LLegada String
 }

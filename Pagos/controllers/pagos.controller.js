@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 const ShowPagos = async(req=request, res=response)=>{
 
-    const pago = await prisma.users.findMany()
+    const pago = await prisma.pago.findMany()
     .catch(err=>{
         return err.message;
     }).finally((async ()=>{
@@ -13,7 +13,7 @@ const ShowPagos = async(req=request, res=response)=>{
     }));
 
     res.json({
-        tiquete
+        pago
     });
 };
 
@@ -21,13 +21,11 @@ const AddPagos = async(req=request, res=response)=>{
 
     const { Metodo, monto, fecha } = req.body;
 
-    const result = await prisma.users.create({
+    const result = await prisma.pago.create({
         data: {
             Metodo,
             monto,
             fecha
-          
-
         }
     }).catch(err=>{
         return err.message;
@@ -40,10 +38,32 @@ const AddPagos = async(req=request, res=response)=>{
     });
 };
 
-const ShowPago = async(req=request, res=response)=>{
-    res.json({
-        "saludo":"soy la respuesta de mostrar usuarios"
-    });
+const ShowPago = async(req = request, res = response) => {
+    const { id } = req.params;
+
+    try {
+        const pago = await prisma.pago.findUnique({
+            where: {
+                id: Number(id)
+            }
+        });
+
+        if (!pago) {
+            return res.status(404).json({
+                message: "Pago no encontrado"
+            });
+        }
+
+        res.json({
+            pago
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        });
+    } finally {
+        await prisma.$disconnect();
+    }
 };
 
 const EditPago = async(req=request, res=response)=>{
@@ -51,7 +71,7 @@ const EditPago = async(req=request, res=response)=>{
 
     const { Metodo, monto, fecha} = req.body;
 
-    const result = await prisma.users.update({
+    const result = await prisma.pago.update({
         where:{
             id: Number(id)
         },
@@ -75,7 +95,7 @@ const EditPago = async(req=request, res=response)=>{
 const DeletePago = async(req=request, res=response)=>{
     const { id } = req.params;
 
-    const result = await prisma.users.delete({
+    const result = await prisma.pago.delete({
         where:{
             id: Number(id)
         }
